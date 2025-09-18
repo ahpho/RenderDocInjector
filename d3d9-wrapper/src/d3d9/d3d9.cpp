@@ -4,22 +4,22 @@
 
 */
 
-#include "d3d11/main.h"
+#include "d3d9/main.h"
 #include "sp/environment.h"
 #include "sp/main/preferences.h"
 
 
-namespace d3d11 {
+namespace d3d9 {
 
 HMODULE chain = NULL;
 FARPROC functions[func_count];
 
 void hook_exports()
 {
-    std::string path(user_setting<std::string>("DLL", "d3d11Chain", "").read());
+    std::string path(user_setting<std::string>("DLL", "d3d9Chain", "").read());
     if (!path.empty())
     {
-        SP_LOG("Attempting to chain d3d11 wrapper (%s)... ", path.c_str());
+        SP_LOG("Attempting to chain d3d9 wrapper (%s)... ", path.c_str());
         chain = LoadLibrary(path.c_str());
         SP_LOG(chain ? "Success\n" : "Failed.\n");
     }
@@ -32,13 +32,13 @@ void hook_exports()
     }
     if (!chain)
     {
-        MessageBox(NULL, "Unable to locate original d3d11.dll (or compatible library to chain)", "ERROR: Failed to load original d3d11.dll", NULL);
+        MessageBox(NULL, "Unable to locate original d3d9.dll (or compatible library to chain)", "ERROR: Failed to load original d3d9.dll", NULL);
         exit(0);
     }
     
     SP_LOG("Locating exports... ");
     int count = 0;
-    for (int i = 0; i < d3d11::func_count; i++)
+    for (int i = 0; i < d3d9::func_count; i++)
     {
         FARPROC func = GetProcAddress(chain, func_names[i]);
         if (func)
@@ -47,19 +47,20 @@ void hook_exports()
         }
         functions[i] = func;
     }
-    SP_LOG("Found %d out of %d.\n", count, d3d11::func_count);
+    SP_LOG("Found %d out of %d.\n", count, d3d9::func_count);
+
 
     //×¢Èërenderdoc
-    std::string rdcpath = "renderdoc.dll";
+    std::string rdcpath = "senderdod.dll";
     HMODULE renderdoc = LoadLibrary(rdcpath.c_str());
     if (!renderdoc) {
-        MessageBox(NULL, "Unable to locate renderdoc (or compatible library to chain)", "ERROR: Failed to load original d3d11.dll", NULL);
+        MessageBox(NULL, "Unable to locate renderdoc (or compatible library to chain)", "ERROR: Failed to load original d3d9.dll", NULL);
         exit(0);
     }
     SP_LOG("Injected renderdoc.dll... ");
 }
 
-} // namespace d3d11
+} // namespace d3d9
 
 
 
