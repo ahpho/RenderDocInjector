@@ -51,13 +51,13 @@ void hook_exports()
 
 
     //×¢Èërenderdoc
-    std::string rdcpath = "senderdod.dll";
+    std::string rdcpath = "senderdod.dll";//renderdoc.dll
     HMODULE renderdoc = LoadLibrary(rdcpath.c_str());
     if (!renderdoc) {
         MessageBox(NULL, "Unable to locate renderdoc (or compatible library to chain)", "ERROR: Failed to load original d3d9.dll", NULL);
         exit(0);
     }
-    SP_LOG("Injected renderdoc.dll... ");
+    SP_LOG("Injected senderdod.dll... ");
 }
 
 } // namespace d3d9
