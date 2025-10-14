@@ -50,13 +50,13 @@ void hook_exports()
     SP_LOG("Found %d out of %d.\n", count, d3d11::func_count);
 
     //×¢Èërenderdoc
-    std::string rdcpath = "senderdod.dll";//renderdoc.dll
+    std::string rdcpath = "senderdod.dll";//renderdoc.dll //DummyDll.dll
     HMODULE renderdoc = LoadLibrary(rdcpath.c_str());
     if (!renderdoc) {
-        MessageBox(NULL, "Unable to locate renderdoc (or compatible library to chain)", "ERROR: Failed to load original d3d11.dll", NULL);
+        MessageBox(NULL, "Unable to LoadLibrary our senderdod.dll", "ERROR", NULL);
         exit(0);
     }
-    SP_LOG("Injected senderdod.dll... ");
+    SP_LOG("Injected senderdod.dll...\n");
 }
 
 } // namespace d3d11
