@@ -1,0 +1,16 @@
+LIBRARY sl.interposer.dll
+EXPORTS
+    CreateDXGIFactory=w_CreateDXGIFactory
+    CreateDXGIFactory1=w_CreateDXGIFactory1
+    CreateDXGIFactory2=w_CreateDXGIFactory2
+    D3D11CreateDevice=w_D3D11CreateDevice
+    D3D11CreateDeviceAndSwapChain=w_D3D11CreateDeviceAndSwapChain
+    D3D12CreateDevice=w_D3D12CreateDevice
+    D3D12CreateRootSignatureDeserializer=w_D3D12CreateRootSignatureDeserializer
+    D3D12CreateVersionedRootSignatureDeserializer=w_D3D12CreateVersionedRootSignatureDeserializer
+    D3D12EnableExperimentalFeatures=w_D3D12EnableExperimentalFeatures
+    D3D12GetDebugInterface=w_D3D12GetDebugInterface
+    D3D12GetInterface=w_D3D12GetInterface
+    D3D12SerializeRootSignature=w_D3D12SerializeRootSignature
+    D3D12SerializeVersionedRootSignature=w_D3D12SerializeVersionedRootSignature
+    DXGIGetDebugInterface1=w_DXGIGetDebugInterface1
